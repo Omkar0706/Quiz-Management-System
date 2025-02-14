@@ -1,0 +1,17 @@
+.dashboard {
+    padding: 20px;
+  }
+  
+  .quiz-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .quiz-card {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    width: 250px;
+  }
+  
