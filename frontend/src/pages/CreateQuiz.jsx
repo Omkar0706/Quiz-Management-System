@@ -184,6 +184,27 @@ export default function CreateQuiz() {
                   ))}
                 </div>
               )}
+                {question.type === "true_false" && (
+                <div className="true-false-container">
+                  <label className="true-false-option">
+                    <input type="radio" name={`truefalse-${qIndex}`} checked={question.answer === "true"}
+                      onChange={() => { const newQuestions = [...formData.questions]; newQuestions[qIndex].answer = "true"; setFormData({ ...formData, questions: newQuestions }); }} /> True
+                  </label>
+                  <label className="true-false-option">
+                    <input type="radio" name={`truefalse-${qIndex}`} checked={question.answer === "false"}
+                      onChange={() => { const newQuestions = [...formData.questions]; newQuestions[qIndex].answer = "false"; setFormData({ ...formData, questions: newQuestions }); }} /> False
+                  </label>
+                </div>
+              )}
+
+              {question.type === "short_answer" && (
+                <input type="text" placeholder="Correct Answer" value={question.answer}
+                  onChange={(e) => {
+                    const newQuestions = [...formData.questions];
+                    newQuestions[qIndex].answer = e.target.value;
+                    setFormData({ ...formData, questions: newQuestions });
+                  }} required />
+              )}
             </div>
           ))}
         </div>
