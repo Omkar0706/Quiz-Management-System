@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles.css"; // ✅ Ensure styles are applied
+import "../styles.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
