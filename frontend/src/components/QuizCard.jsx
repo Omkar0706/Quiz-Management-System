@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles.css"; // Ensure this is included
+import "../styles.css";
 
 export default function QuizCard({ title, description, onDelete, id }) {
   return (
