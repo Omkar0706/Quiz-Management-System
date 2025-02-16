@@ -195,6 +195,17 @@ npm run dev
 ```json
 { "message": "Quiz deleted successfully" }
 ```
+
+## Sceenshot
+![image](https://github.com/user-attachments/assets/79532070-3a67-4880-8d28-954a9d792116)
+![image](https://github.com/user-attachments/assets/dd5a835c-d164-4524-bcf5-c1b0ce85507e)
+![image](https://github.com/user-attachments/assets/43905373-efde-4ac9-a26c-baaa5cad24c2)
+![image](https://github.com/user-attachments/assets/8ce49269-e055-49b1-8b67-46372d666db6)
+![image](https://github.com/user-attachments/assets/f654c736-79d0-4ef4-b645-21b77231fc18)
+![image](https://github.com/user-attachments/assets/2927a1e1-7803-4061-ac99-8d25ae74e499)
+![image](https://github.com/user-attachments/assets/6e5dd526-2d86-41be-b06a-96755e87b940)
+
+
 ## 🎯 Future Enhancements
 * Quiz Timer & Scoring
 * User Role Management (Admin, Student)
