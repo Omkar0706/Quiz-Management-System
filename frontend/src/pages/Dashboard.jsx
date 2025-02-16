@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchQuizzes, deleteQuiz } from "../api";
+import { useNavigate } from "react-router-dom";
 import QuizCard from "../components/QuizCard";
-import "../styles.css"; // Ensure styles are properly applied
+import "../styles.css";
 
 export default function Dashboard() {
   const [quizzes, setQuizzes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadQuizzes = async () => {
@@ -29,6 +31,22 @@ export default function Dashboard() {
       console.error("Failed to delete quiz", error);
     }
   };
+
+ // ✅ Handle quiz editing
+const handleEditQuiz = (quizId) => {
+  console.log("Quiz ID to edit:", quizId); // Debugging log
+  if (!quizId) {
+    console.error("No quiz ID provided for editing.");
+    return;
+  }
+
+  try {
+    navigate(`/edit-quiz/${quizId}`); // Navigate to the Edit Quiz page
+  } catch (error) {
+    console.error("Failed to navigate for quiz editing", error);
+  }
+};
+
   
   return (
     <div className="dashboard-container">
@@ -41,6 +59,7 @@ export default function Dashboard() {
            id={quiz.id} 
            description={quiz.description}
            onDelete={handleDeleteQuiz} // Pass delete function
+           onEdit = {handleEditQuiz}
           />
         ))}
       </div>
