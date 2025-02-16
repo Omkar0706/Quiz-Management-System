@@ -182,15 +182,36 @@ body {
   transform: scale(1.05);
 }
 
+/* Edit Button */
+.edit-button {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #6c5ce7; /* Purple Shade */
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 10px
+}
+
+/* Hover Effect */
+.edit-button:hover {
+  background-color: #4834d4; /* Darker Purple */
+}
 
 /* ✅ Create Quiz Container */
 .create-quiz-container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-  background: white;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); */
 }
 
 /* ✅ Header */
@@ -241,11 +262,49 @@ body {
   color: red;
   cursor: pointer;
 }
+.true-false-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
 
+.true-false-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: blue;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.true-false-option input {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.true-option {
+  color: green;
+  border: 2px solid green;
+}
+
+.false-option {
+  color: red;
+  border: 2px solid red;
+}
+
+/* Highlight selected option */
+.true-option input:checked + label,
+.false-option input:checked + label {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 /* ✅ Buttons */
 .buttons-container {
   display: flex;
   justify-content: space-between;
+  gap: 50px;
   margin-top: 20px;
 }
 
@@ -371,6 +430,30 @@ body {
   margin-bottom: 20px;
 }
 
+/* ✅ Pop-up Message */
+.popup-message {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+  background: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+/* ✅ Pop-up Animation */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
 /* Input Fields */
 .input-group {
   text-align: left;
@@ -486,185 +569,118 @@ body {
   color: #5555d3;
 }
 
-/* Main Container */
+/* Quiz Form Container */
 .quiz-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: #f4f4f9;
+  max-width: 600px;
+  margin: auto;
   padding: 20px;
-}
-
-/* Form Card */
-.quiz-form form {
-  background: white;
-  color: #333;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  max-width: 450px;
-  width: 100%;
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Hover effect */
-.quiz-form form:hover {
-  transform: translateY(-3px);
-}
-
-/* Form Heading */
-.quiz-form h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #444;
-}
-
-/* Labels */
-.quiz-form label {
-  display: block;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  text-align: left;
-  color: #555;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Input Fields */
-.quiz-form input,
+.quiz-form input[type="text"],
 .quiz-form textarea {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease-in-out;
+  padding: 10px;
+  color: #007bff;
+  margin: 5px 0 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Questions Box */
+.question-box {
+  background: #ffffff;
+  padding: 15px;
   margin-bottom: 15px;
-  background: #fafafa;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
-/* Focus Effect */
-.quiz-form input:focus,
-.quiz-form textarea:focus {
-  border-color: #667eea;
-  outline: none;
-  box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
-  background: white;
-}
-
-/* Textarea */
-.quiz-form textarea {
-  height: 120px;
-  resize: none;
-}
-
-/* Submit Button */
-.quiz-form button {
-  width: 100%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Button Hover */
-.quiz-form button:hover {
-  background: linear-gradient(135deg, #5a67d8, #6b46c1);
-  transform: translateY(-2px);
-}
-
-/* Responsive Design */
-@media (max-width: 500px) {
-  .quiz-form form {
-      max-width: 90%;
-      padding: 20px;
-  }
-}
-/* Options Container */
-.options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Individual Option */
+/* Option Item */
 .option-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #fafafa;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: all 0.3s ease-in-out;
+  padding: 8px;
+  background: #eef2ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background 0.3s;
 }
 
 /* Checkbox Styling */
-.option-item input[type="checkbox"],
-.option-item input[type="radio"] {
-  margin: 0;
+.option-item input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: #667eea; /* Changes the color of the checkbox */
+  accent-color: #4caf50; /* Green for correct answer */
+  cursor: pointer;
 }
 
-/* Textbox for Option */
+/* Highlight Correct Answer */
+.option-item input[type="checkbox"]:checked + input[type="text"] {
+  font-weight: bold;
+  background: #d4edda;
+  border: 1px solid #28a745;
+}
+
+/* Option Input */
 .option-item input[type="text"] {
   flex: 1;
   padding: 8px;
-  border: none;
-  border-left: 1px solid #ddd;
-  outline: none;
-  font-size: 1rem;
-  background: transparent;
+  border: 1px solid #bbb;
+  border-radius: 4px;
 }
 
-/* Option Hover Effect */
-.option-item:hover {
-  background: #f0f0ff;
-  border-color: #667eea;
-}
+/* Buttons */
 .buttons-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
-.submit-button {
-  background: #4CAF50;
-  color: white;
+.add-question-button,
+.save-quiz-button,
+.cancel-button {
   padding: 10px 15px;
+  font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
+  transition: all 0.3s ease-in-out;
 }
 
-.submit-button:hover {
-  background: #45a049;
+.add-question-button {
+  background: #007bff;
+  color: white;
+}
+
+.save-quiz-button {
+  background: #28a745;
+  color: white;
 }
 
 .cancel-button {
-  background: red;
+  background: #dc3545;
   color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
+}
+
+.add-question-button:hover {
+  background: #0056b3;
+}
+
+.save-quiz-button:hover {
+  background: #218838;
 }
 
 .cancel-button:hover {
-  background: darkred;
+  background: #c82333;
 }
+
 
 
 /* Register Page Styling */
@@ -779,4 +795,60 @@ body {
 
 .register-link:hover {
   text-decoration: underline;
+}
+
+.quiz-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background:linear-gradient(135deg, #667eea, #764ba2);
+  text-align: center;
+}
+
+.question-box {
+  padding: 20px;
+  background: #f9f8fa;
+  color:#007bff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.option-label:hover {
+  background: #e0e0e0;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #007bff;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 50px
+}
+
+button:last-child {
+  margin-right: 0; /* Ensures last button does not have extra spacing */
+} 
+
+.result {
+  text-align: center;
+  margin-top: 20px;
 }

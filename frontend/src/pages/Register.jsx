@@ -61,7 +61,7 @@ export default function Register() {
             />
           </div>
 
-          <div>
+          <div style={{ marginTop: "15px" }}>
             <label>Password</label>
             <input
               type="password"
@@ -72,7 +72,7 @@ export default function Register() {
             />
           </div>
 
-          <button type="submit" className="register-button" disabled={loading}>
+          <button type="submit" className="register-button" style={{ marginTop: "15px" }} disabled={loading}>
             {loading ? "Creating account..." : "Create account"}
           </button>
         </form>

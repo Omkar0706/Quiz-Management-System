@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="logo">Quiz Manager</div>
+      <div className="logo">Quizo</div>
 
       {/* Mobile Menu Button */}
       <button

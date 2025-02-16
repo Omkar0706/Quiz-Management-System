@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
-import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { Eye, EyeOff, LogIn, CheckCircle } from 'lucide-react';
 import "../styles.css"; // Ensure this file is correctly linked
 
 export default function Login({ onLoginSuccess }) {
@@ -14,6 +14,7 @@ export default function Login({ onLoginSuccess }) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +33,13 @@ export default function Login({ onLoginSuccess }) {
       const data = await response.json();
 
       if (response.ok) {
-        onLoginSuccess();
+        // onLoginSuccess();
+        localStorage.setItem("user", JSON.stringify({ username: formData.username })); // ✅ Store User
+        setShowPopup(true); // ✅ Show Pop-up
+        setTimeout(() => {
+          setShowPopup(false);
+          navigate("/"); // ✅ Redirect to Dashboard
+        }, 3000);
       } else {
         setError(data.message || 'Login failed. Please try again.');
       }
@@ -53,6 +60,13 @@ export default function Login({ onLoginSuccess }) {
 
   return (
     <div className="login-container">
+      {/* ✅ Pop-up Notification */}
+      {showPopup && (
+        <div className="popup-message">
+          <CheckCircle size={24} />
+          Login Successful! Redirecting...
+        </div>
+      )}
       <div className="login-box">
         <h1 className="login-title">Welcome Back</h1>
         <p className="login-subtitle">Please sign in to continue</p>
@@ -88,12 +102,12 @@ export default function Login({ onLoginSuccess }) {
               className="input-field"
               placeholder="Enter your password"
             />
-            <button
+            <button style={{ marginTop: "7px" }}
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="password-toggle"
             >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              {showPassword ? <EyeOff size={25} /> : <Eye size={25} /> }
             </button>
           </div>
 
@@ -116,10 +130,10 @@ export default function Login({ onLoginSuccess }) {
           </button>
         </form>
 
-        <div className="register-link">
+        <div className="register-link" >
           <p>
             Don't have an account?{' '}
-            <button 
+            <button style={{ marginTop: "10px" }}
               onClick={() => navigate('/register')} // ✅ Redirect to Register Page
               className="register-button"
             >
